@@ -30,7 +30,7 @@ sap.ui.define([
                         numberUnit: "USD",
                         press: this.onListItemPress.bind(this),
                         intro: p.description,
-                        icon: p.image ? p.image : "sap-icon://product",
+                        icon: p.image ? p.image : "sap-icon://file",
                         type: "Active"
                     }));
                 });

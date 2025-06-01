@@ -10,15 +10,16 @@
   "main": "webapp/index.html",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
     "express": "^4.21.2"
   },
   "devDependencies": {
     "@sap/ux-ui5-tooling": "1",
     "@ui5/cli": "^3.0.0",
-    "concurrently": "^9.1.2" 
+    "concurrently": "^9.1.2"
   },
   "scripts": {
-    "start": "concurrently \"node backend/app.js\" \"fiori run --open 'test/flpSandbox.html?sap-ui-xx-viewCache=false#pcproductcatalogue-display'\"", 
+    "start": "concurrently \"node backend/app.js\" \"fiori run --open 'test/flpSandbox.html?sap-ui-xx-viewCache=false#pcproductcatalogue-display'\"",
     "start-backend": "node backend/app.js",
     "start-frontend": "fiori run --open 'test/flpSandbox.html?sap-ui-xx-viewCache=false#pcproductcatalogue-display'",
     "start-local": "fiori run --config ./ui5-local.yaml --open \"test/flpSandbox.html?sap-ui-xx-viewCache=false#pcproductcatalogue-display\"",

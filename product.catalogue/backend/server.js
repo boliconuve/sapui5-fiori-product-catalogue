@@ -1,13 +1,16 @@
+require('dotenv').config(); // Cargar variables del .env
+
 const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
 const app = express();
-const PORT = 3000;
+
+const PORT = process.env.PORT;
+const DB_FILE = process.env.DB_FILE;
 
 app.use(cors());
 app.use(express.json());
 
-const DB_FILE = './data/products.json';
 
 function readData() {
   return JSON.parse(fs.readFileSync(DB_FILE, 'utf-8'));
