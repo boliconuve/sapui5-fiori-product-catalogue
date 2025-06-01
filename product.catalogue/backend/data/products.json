@@ -1,0 +1,107 @@
+[
+  {
+    "id": "mouse-inalambrico",
+    "name": "Mouse inalámbrico",
+    "description": "Mouse ergonómico con conectividad Bluetooth.",
+    "price": 25.99,
+    "image": "https://m.media-amazon.com/images/I/61LtuGzXeaL._AC_SL1500_.jpg"
+  },
+  {
+    "id": "teclado-mecanico",
+    "name": "Teclado mecánico",
+    "description": "Teclado RGB ideal para programadores.",
+    "price": 123,
+    "image": "https://m.media-amazon.com/images/I/71cNG6N2pGL._AC_SL1500_.jpg"
+  },
+  {
+    "id": "monitor-4k",
+    "name": "Monitor 4K",
+    "description": "Monitor de 27 pulgadas con resolución 4K.",
+    "price": 350,
+    "image": "https://m.media-amazon.com/images/I/81r8JazBSDL._AC_SL1500_.jpg"
+  },
+  {
+    "id": "laptop-gaming",
+    "name": "Laptop Gaming",
+    "description": "Laptop con tarjeta gráfica NVIDIA RTX 3060.",
+    "price": 1299,
+    "image": "https://m.media-amazon.com/images/I/71lYhcc++AL._AC_SL1500_.jpg"
+  },
+  {
+    "id": "auriculares-bluetooth",
+    "name": "Auriculares Bluetooth",
+    "description": "Auriculares con cancelación de ruido activa.",
+    "price": 199.99,
+    "image": "https://m.media-amazon.com/images/I/61CGHv6kmWL._AC_SL1500_.jpg"
+  },
+  {
+    "id": "camara-web-hd",
+    "name": "Cámara Web HD",
+    "description": "Cámara web con micrófono integrado y resolución 1080p.",
+    "price": 49.99,
+    "image": "https://m.media-amazon.com/images/I/61F7Ck4P6GL._AC_SL1500_.jpg"
+  },
+  {
+    "id": "disco-duro-externo",
+    "name": "Disco Duro Externo",
+    "description": "Disco duro de 1TB con conexión USB 3.0.",
+    "price": 79.99,
+    "image": "https://m.media-amazon.com/images/I/71c5lDNWQkL._AC_SL1500_.jpg"
+  },
+  {
+    "id": "router-wifi-mesh",
+    "name": "Router WiFi Mesh",
+    "description": "Sistema de router WiFi Mesh para cobertura completa.",
+    "price": 199,
+    "image": "https://m.media-amazon.com/images/I/51w2p4p1QdL._AC_SL1000_.jpg"
+  },
+  {
+    "id": "smartphone-android",
+    "name": "Smartphone Android",
+    "description": "Smartphone con pantalla AMOLED y 128GB de almacenamiento.",
+    "price": 499.99,
+    "image": "https://m.media-amazon.com/images/I/71d7rfSl0wL._AC_SL1500_.jpg"
+  },
+  {
+    "id": "tableta-stylus",
+    "name": "Tableta con Stylus",
+    "description": "Tableta de 10 pulgadas con soporte para lápiz óptico.",
+    "price": 349,
+    "image": "https://m.media-amazon.com/images/I/71rNJQ2g-EL._AC_SL1500_.jpg"
+  },
+  {
+    "id": "smartwatch-deportivo",
+    "name": "Smartwatch Deportivo",
+    "description": "Reloj inteligente con monitor de actividad y GPS.",
+    "price": 199.99,
+    "image": "https://m.media-amazon.com/images/I/61nPiOO2wqL._AC_SL1500_.jpg"
+  },
+  {
+    "id": "proyector-portatil",
+    "name": "Proyector Portátil",
+    "description": "Proyector compacto con resolución HD y conectividad inalámbrica.",
+    "price": 399,
+    "image": "https://m.media-amazon.com/images/I/71QkQ9mwVKL._AC_SL1500_.jpg"
+  },
+  {
+    "id": "altavoz-inteligente",
+    "name": "Altavoz Inteligente",
+    "description": "Altavoz con asistente virtual y sonido de alta calidad.",
+    "price": 129.99,
+    "image": "https://m.media-amazon.com/images/I/61u48FEsQKL._AC_SL1500_.jpg"
+  },
+  {
+    "id": "cargador-solar-portatil",
+    "name": "Cargador Solar Portátil",
+    "description": "Cargador solar con capacidad de 20,000mAh.",
+    "price": 59.99,
+    "image": "https://m.media-amazon.com/images/I/71v0T9QeYGL._AC_SL1500_.jpg"
+  },
+  {
+    "id": "soporte-laptop",
+    "name": "Soporte para Laptop",
+    "description": "Soporte ajustable para laptop con refrigeración.",
+    "price": 39.99,
+    "image": "https://m.media-amazon.com/images/I/61p6w0YbQXL._AC_SL1500_.jpg"
+  }
+]

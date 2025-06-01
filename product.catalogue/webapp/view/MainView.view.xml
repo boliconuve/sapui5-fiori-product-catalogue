@@ -1,0 +1,9 @@
+<mvc:View controllerName="pc.product.catalogue.controller.MainView"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page id="_IDGenPage" title="Catálogo de Productos">
+        <content>
+            <VBox id="productList" class="sapUiSmallMargin"/>
+        </content>
+    </Page>
+</mvc:View>
