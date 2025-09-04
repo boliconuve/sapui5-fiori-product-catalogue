@@ -29,6 +29,10 @@ An SAP Fiori application to buy products.
     npm start
 ```
 
+### Starting Backend
+
+    node server.js
+
 #### Pre-requisites:
 
 1. Active NodeJS LTS (Long Term Support) version and associated supported NPM version.  (See https://nodejs.org)
@@ -37,6 +41,6 @@ An SAP Fiori application to buy products.
 4. npm install dotenv -> archivo local .env
 
 #### Images:
-
+![alt text](image.png)
 
 
