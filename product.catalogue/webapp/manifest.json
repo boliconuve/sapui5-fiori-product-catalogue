@@ -69,8 +69,7 @@
         "type": "View",
         "viewType": "XML",
         "path": "pc.product.catalogue.view",
-        "async": true,
-        "viewPath": "pc.product.catalogue.view"
+        "async": true
       },
       "routes": [
         {

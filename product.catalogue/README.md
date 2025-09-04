@@ -32,5 +32,11 @@ An SAP Fiori application to buy products.
 #### Pre-requisites:
 
 1. Active NodeJS LTS (Long Term Support) version and associated supported NPM version.  (See https://nodejs.org)
+2. npm install express cors -> node server.js
+3. npm install --save-dev concurrently -> Esto te permite ejecutar dos comandos al mismo tiempo desde un script de package.json.
+4. npm install dotenv -> archivo local .env
+
+#### Images:
+
 
 
