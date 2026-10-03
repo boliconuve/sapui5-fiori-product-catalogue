@@ -40,15 +40,19 @@ sap.ui.define([
                     press: () => {
                         const newPrice = oInput.getValue();
                         // Llama a la API para actualizar el precio
-                        fetch("http://localhost:3000/products/"+sId, {
+                        fetch("/products/" + encodeURIComponent(sId), {
                             method: "PUT",
                             headers: {
                                 "Content-Type": "application/json"
                             },
                             body: JSON.stringify({ price: parseFloat(newPrice) })
                         })
-                        .then(res => {
-                            if (!res.ok) throw new Error("No se pudo actualizar el producto");
+                        .then(async res => {
+                            if (!res.ok) {
+                                const body = await res.json().catch(() => ({}));
+                                throw new Error(body.error || "No se pudo actualizar el producto");
+                            }
+
                             return res.json();
                         }).then(updatedProduct => {
                             oItem.setNumber(`$${updatedProduct.price}`);

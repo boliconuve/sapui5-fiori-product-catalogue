@@ -6,7 +6,7 @@ sap.ui.define([
         // Puedes agregar aquí métodos comunes para todos los controladores
         onInitProducts: function() {
             // Initialize the product list
-            fetch("http://localhost:3000/products", {
+            fetch("/products", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"

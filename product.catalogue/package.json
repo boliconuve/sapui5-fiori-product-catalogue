@@ -14,14 +14,14 @@
     "express": "^4.21.2"
   },
   "devDependencies": {
-    "@sap/ux-ui5-tooling": "1",
-    "@ui5/cli": "^3.0.0",
+    "@sap/ux-ui5-tooling": "1.33.0",
+    "@ui5/cli": "4.0.70",
     "concurrently": "^9.1.2"
   },
   "scripts": {
-    "start": "concurrently \"node backend/app.js\" \"fiori run --open 'test/flpSandbox.html?sap-ui-xx-viewCache=false#pcproductcatalogue-display'\"",
-    "start-backend": "node backend/app.js",
-    "start-frontend": "fiori run --open 'test/flpSandbox.html?sap-ui-xx-viewCache=false#pcproductcatalogue-display'",
+    "start": "concurrently --kill-others-on-fail \"npm run start-backend\" \"npm run start-frontend\"",
+    "start-backend": "node backend/server.js",
+    "start-frontend": "fiori run --open \"test/flpSandbox.html?sap-ui-xx-viewCache=false#pcproductcatalogue-display\"",
     "start-local": "fiori run --config ./ui5-local.yaml --open \"test/flpSandbox.html?sap-ui-xx-viewCache=false#pcproductcatalogue-display\"",
     "build": "ui5 build --config=ui5.yaml --clean-dest --dest dist",
     "deploy": "fiori verify",
