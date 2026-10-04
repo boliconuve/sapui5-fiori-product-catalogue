@@ -3,19 +3,19 @@
     "id": "mouse-inalambrico",
     "name": "Mouse inalámbrico",
     "description": "Mouse ergonómico con conectividad Bluetooth.",
-    "price": 123
+    "price": 12
   },
   {
     "id": "teclado-mecanico",
     "name": "Teclado mecánico",
     "description": "Teclado RGB ideal para programadores.",
-    "price": 123
+    "price": 321
   },
   {
     "id": "monitor-4k",
     "name": "Monitor 4K",
     "description": "Monitor de 27 pulgadas con resolución 4K.",
-    "price": 390
+    "price": 400
   },
   {
     "id": "laptop-gaming",

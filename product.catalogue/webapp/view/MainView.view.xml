@@ -3,7 +3,12 @@
     xmlns="sap.m">
     <Page id="_IDGenPage" title="Catálogo de Productos">
         <content>
-            <VBox id="productList" class="sapUiSmallMargin"/>
+            <!--<VBox id="productList" class="sapUiSmallMargin"/>-->
+            <List id="productList" items="{products>/items}"  noDataText="No hay productos disponibles.">
+                <items>
+                    <ObjectListItem id="productItem" title="{products>name}" intro="{products>description}" number="{products>price}" numberUnit="USD" icon="{products>image}" type="Active" press=".onListItemPress"/>
+                </items>
+            </List>
         </content>
     </Page>
 </mvc:View>

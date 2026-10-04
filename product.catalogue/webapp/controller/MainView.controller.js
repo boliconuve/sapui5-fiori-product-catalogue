@@ -1,24 +1,44 @@
 sap.ui.define([
-    "pc/product/catalogue/controller/BaseController"
-], (BaseController) => {
+    "pc/product/catalogue/controller/BaseController",
+    "pc/product/catalogue/service/ProductService",
+    "sap/ui/model/json/JSONModel",
+    "sap/m/MessageBox"
+], (BaseController, ProductService, JSONModel, MessageBox) => {
     "use strict";
 
     return BaseController.extend("pc.product.catalogue.controller.MainView", {
         onInit() {
-            this.onInitProducts();
+            let oProductModel = new JSONModel({ items: [] });
+            this.setModel(oProductModel, "products");
+            this._loadProducts();
         },
 
-        onListItemPress: function (oEvent) {
-            // Get the selected item
-            const oItem = oEvent.getSource();
-            const sTitle = oItem.getTitle();
-            const sNumber = oItem.getNumber();
-            const sIntro = oItem.getIntro();
-            const sIcon = oItem.getIcon();
-            const sId = oItem.getId();
+        _loadProducts: async function ()
+        {
+            const oModel = this.getModel("products");
+            this.getView().setBusy(true);
 
-            // Extrae el valor numérico del precio
-            const nPrice = parseFloat(sNumber.replace(/[^0-9.]/g, ""));
+            try{
+                let products = await ProductService.getAll();
+                oModel.setProperty("/items", products);
+            } catch (oError) {
+                MessageBox.error(oError.message);
+            } finally {
+                this.getView().setBusy(false);
+            }
+        },
+
+        onListItemPress: function (oEvent)
+        {
+            const oItem = oEvent.getSource();
+            const oContext = oItem.getBindingContext("products");
+            const oProduct = oContext.getObject();
+
+            let sTitle = oProduct.name;
+            let sIntro = oProduct.description;
+            let sIcon = oProduct.image || "sap-icon://product";
+            let sId = oProduct.id;
+            let nPrice = oProduct.price;
 
             // Input para editar el precio
             const oInput = new sap.m.Input({
@@ -40,22 +60,10 @@ sap.ui.define([
                     press: () => {
                         const newPrice = oInput.getValue();
                         // Llama a la API para actualizar el precio
-                        fetch("/products/" + encodeURIComponent(sId), {
-                            method: "PUT",
-                            headers: {
-                                "Content-Type": "application/json"
-                            },
-                            body: JSON.stringify({ price: parseFloat(newPrice) })
-                        })
-                        .then(async res => {
-                            if (!res.ok) {
-                                const body = await res.json().catch(() => ({}));
-                                throw new Error(body.error || "No se pudo actualizar el producto");
-                            }
-
-                            return res.json();
+                        ProductService.update(sId, {
+                            price: parseFloat(newPrice)
                         }).then(updatedProduct => {
-                            oItem.setNumber(`$${updatedProduct.price}`);
+                            this.getModel("products").setProperty(oContext.getPath(),updatedProduct); //oItem.setNumber(`$${updatedProduct.price}`);
                             sap.m.MessageToast.show("Precio actualizado correctamente");
                             oDialog.close();
                         }
