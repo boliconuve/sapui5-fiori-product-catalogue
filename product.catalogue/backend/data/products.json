@@ -3,13 +3,13 @@
     "id": "mouse-inalambrico",
     "name": "Mouse inalámbrico",
     "description": "Mouse ergonómico con conectividad Bluetooth.",
-    "price": 12
+    "price": 12.45
   },
   {
     "id": "teclado-mecanico",
     "name": "Teclado mecánico",
     "description": "Teclado RGB ideal para programadores.",
-    "price": 321
+    "price": 450
   },
   {
     "id": "monitor-4k",

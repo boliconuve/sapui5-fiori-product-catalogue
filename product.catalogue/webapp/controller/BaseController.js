@@ -3,6 +3,12 @@ sap.ui.define([
 ], function(Controller) {
     "use strict";
     return Controller.extend("pc.product.catalogue.controller.BaseController", {
+
+        // Función que devuelven la localización/traducciones
+        getResourceBundle: function ()
+        {
+            return this.getOwnerComponent().getModel("i18n").getResourceBundle();
+        },
        
         getModel: function (sName)
         {

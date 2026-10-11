@@ -2,15 +2,26 @@ sap.ui.define([
     "pc/product/catalogue/controller/BaseController",
     "pc/product/catalogue/service/ProductService",
     "sap/ui/model/json/JSONModel",
-    "sap/m/MessageBox"
-], (BaseController, ProductService, JSONModel, MessageBox) => {
+    "sap/ui/core/ValueState",
+    "sap/m/MessageToast",
+    "sap/m/MessageBox",
+    "sap/m/Dialog",
+    "sap/m/Text",
+    "sap/m/Input",
+    "sap/m/Label",
+    "sap/m/Button",
+    "sap/m/HBox",
+    "sap/m/VBox"
+], (BaseController, ProductService, JSONModel, ValueState, MessageToast, MessageBox, Dialog, Text, Input, Label, Button, HBox, VBox) => {
     "use strict";
+    var oResourceBundle;
 
     return BaseController.extend("pc.product.catalogue.controller.MainView", {
         onInit() {
             let oProductModel = new JSONModel({ items: [] });
             this.setModel(oProductModel, "products");
             this._loadProducts();
+            oResourceBundle=this.getResourceBundle();
         },
 
         _loadProducts: async function ()
@@ -41,35 +52,63 @@ sap.ui.define([
             let nPrice = oProduct.price;
 
             // Input para editar el precio
-            const oInput = new sap.m.Input({
-                value: nPrice,
-                type: "Number"
+            const oInput = new Input({ value: nPrice, width: "50%" });
+            const oLabel = new Label({ text: "Precio: "});
+            const oDescription = new Text({ text: `Descripción: ${sIntro}`}); 
+
+            const oHBox = new HBox({
+                items: [
+                    oLabel,
+                    oInput
+                ]
+            });
+
+            const oVBox = new VBox({
+                items: [
+                    oHBox,
+                    oDescription
+                ]
             });
 
             // Dialog para mostrar y editar detalles
-            const oDialog = new sap.m.Dialog({
+            const oDialog = new Dialog({
                 title: sTitle,
                 content: [
                     new sap.m.Image({ src: sIcon }),
-                    new sap.m.Label({ text: "Precio:" }),
-                    oInput,
-                    new sap.m.Text({ text: `Descripción: ${sIntro}` })
+                    oVBox
                 ],
-                beginButton: new sap.m.Button({
+                beginButton: new Button({
                     text: "Guardar",
                     press: () => {
-                        const newPrice = oInput.getValue();
+
+                        const isNumber = Number(oInput.getValue()); // isNumber
+                        const isNaN = Number.isNaN(isNumber); // isNan
+                        const isZero = (oInput.getValue() < 0) ? true : false;
+
+                        const numberFinity = isFinite(isNumber);
+
+                        // En el caso que el precio sea incorrecto
+                        if(isZero || !isNumber || isNaN || !numberFinity)
+                        {
+                            oInput.setValueState(ValueState.Error);
+                            oInput.setValueStateText(oResourceBundle.getText("mainView.dialog.errorMessage"));
+                            MessageToast.show(oResourceBundle.getText("mainView.dialog.errorMessage"));
+                            return;
+                        }
+
+                        const newPrice = parseFloat(oInput.getValue()); // new price to update
+
                         // Llama a la API para actualizar el precio
                         ProductService.update(sId, {
                             price: parseFloat(newPrice)
                         }).then(updatedProduct => {
-                            this.getModel("products").setProperty(oContext.getPath(),updatedProduct); //oItem.setNumber(`$${updatedProduct.price}`);
-                            sap.m.MessageToast.show("Precio actualizado correctamente");
+                            this.getModel("products").setProperty(oContext.getPath(),updatedProduct);
+                            MessageToast.show(oResourceBundle.getText("mainView.dialog.updatePriceMessage"));
                             oDialog.close();
-                        }
-                        )
-                        .catch(err => {
-                            sap.m.MessageToast.show("Error al actualizar: " + err.message);
+                        }).catch(err => {
+                            MessageToast.show(oResourceBundle.getText("mainView.dialog.errorUpdateServiceMessage") + err.message);
+                        }).finally(() => {
+                            oInput.setValueState(ValueState.None);
                         });
                     }
                 }),
