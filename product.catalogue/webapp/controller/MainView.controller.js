@@ -11,15 +11,19 @@ sap.ui.define([
     "sap/m/Label",
     "sap/m/Button",
     "sap/m/HBox",
-    "sap/m/VBox"
-], (BaseController, ProductService, JSONModel, ValueState, MessageToast, MessageBox, Dialog, Text, Input, Label, Button, HBox, VBox) => {
+    "sap/m/VBox",
+    "sap/ui/model/Filter",
+    "sap/ui/model/FilterType"
+], (BaseController, ProductService, JSONModel, ValueState, MessageToast, MessageBox, Dialog, Text, Input, Label, Button, HBox, VBox, Filter, FilterType) => {
     "use strict";
     var oResourceBundle;
 
     return BaseController.extend("pc.product.catalogue.controller.MainView", {
         onInit() {
             let oProductModel = new JSONModel({ items: [] });
+            let oInitialProduct = new JSONModel({ items: [] });
             this.setModel(oProductModel, "products");
+            this.setModel(oInitialProduct, "initialProducts");
             this._loadProducts();
             oResourceBundle=this.getResourceBundle();
         },
@@ -27,11 +31,13 @@ sap.ui.define([
         _loadProducts: async function ()
         {
             const oModel = this.getModel("products");
+            const oInitialModel = this.getModel("initialProducts");
             this.getView().setBusy(true);
 
             try{
                 let products = await ProductService.getAll();
                 oModel.setProperty("/items", products);
+                oInitialModel.setProperty("/items", products);
             } catch (oError) {
                 MessageBox.error(oError.message);
             } finally {
@@ -122,7 +128,49 @@ sap.ui.define([
 
             // Open the dialog
             oDialog.open();
-        }
+        },
+
+        /**
+         * Search product live change to filter the list of products.
+         */
+        onSearchProduct: function (oEvent)
+        {
+            const sSearchValue = oEvent.getSource().getValue().trim().toLowerCase();
+
+            const oList = this.byId("productList");
+            const oBinding = oList.getBinding("items");
+            const oResourceBundle = this.getResourceBundle();
+            const aFilters = [];
+
+            if (sSearchValue !== "")
+            {
+                const fnMatches = function (value)
+                {
+                    return String(value ?? "").toLowerCase().includes(sSearchValue);
+                };
+
+                const oSearchFilter = new Filter({
+                    filters: [
+                        new Filter({
+                            path: "name",
+                            test: fnMatches
+                        }),
+                        new Filter({
+                            path: "description",
+                            test: fnMatches
+                        })
+                    ],
+                    and: false
+                });
+
+                aFilters.push(oSearchFilter);
+            }
+
+            const sMessageKey = sSearchValue !== "" ? "mainView.search.noResults" : "mainView.search.noProducts";
+
+            oList.setNoDataText(oResourceBundle.getText(sMessageKey));
+            oBinding.filter(aFilters, FilterType.Application);
+        },
 
     });
 });

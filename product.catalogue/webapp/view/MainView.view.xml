@@ -2,9 +2,11 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m">
     <Page id="_IDGenPage" title="Catálogo de Productos">
+        <headerContent>
+            <SearchField id="searchProducts" placeholder="Search products..." liveChange=".onSearchProduct" search=".onSearchProduct"/>
+        </headerContent>
         <content>
-            <!--<VBox id="productList" class="sapUiSmallMargin"/>-->
-            <List id="productList" items="{products>/items}"  noDataText="No hay productos disponibles.">
+            <List id="productList" items="{products>/items}"  noDataText="{i18n>mainView.search.noProducts}">
                 <items>
                     <ObjectListItem id="productItem" title="{products>name}" intro="{products>description}" number="{products>price}" numberUnit="USD" icon="{products>image}" type="Active" press=".onListItemPress"/>
                 </items>
