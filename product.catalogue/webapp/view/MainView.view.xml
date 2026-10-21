@@ -3,7 +3,8 @@
     xmlns="sap.m">
     <Page id="_IDGenPage" title="Catálogo de Productos">
         <headerContent>
-            <SearchField id="searchProducts" placeholder="Search products..." liveChange=".onSearchProduct" search=".onSearchProduct"/>
+            <SearchField id="searchProducts" placeholder="Search products..." liveChange=".onSearchProduct" search=".onSearchProduct" width="50%"/>
+            <Button id="addProduct" icon="sap-icon://add-product" text="{i18n>mainView.button.addProductButton}" press=".onOpenDialog"/>
         </headerContent>
         <content>
             <List id="productList" items="{products>/items}"  noDataText="{i18n>mainView.search.noProducts}">

@@ -172,5 +172,31 @@ sap.ui.define([
             oBinding.filter(aFilters, FilterType.Application);
         },
 
+        onAddProducto: function ()
+        {
+            // Recogemos los valores de los inputs del dialogo
+            var sNombreProducto = this.getView().byId("inputProductName").getValue(); // Name Product
+            var iPrecioProducto = this.getView().byId("inputProductPrice").getValue(); // Price Product
+
+            if(sNombreProducto == "" || iPrecioProducto <= 0)
+            {
+                MessageToast.show("Valor inválido!");
+            }
+
+            
+        },
+
+        async onOpenDialog() {
+			this.oDialog ??= await this.loadFragment({ name: "pc.product.catalogue.view.fragments.AddProduct" });
+			this.oDialog.open();
+		},
+
+        async onCloseDialog()
+        {
+            this.oDialog?.close();
+            this.oDialog?.destroy();
+            this.oDialog = null;
+        }
+
     });
 });
