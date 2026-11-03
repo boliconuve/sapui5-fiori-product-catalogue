@@ -176,13 +176,34 @@ sap.ui.define([
         {
             // Recogemos los valores de los inputs del dialogo
             var sNombreProducto = this.getView().byId("inputProductName").getValue(); // Name Product
-            var iPrecioProducto = this.getView().byId("inputProductPrice").getValue(); // Price Product
+            var iPrecioProducto = Number(this.getView().byId("inputProductPrice").getValue()); // Price Product
 
-            if(sNombreProducto == "" || iPrecioProducto <= 0)
+            if(sNombreProducto.trim() === "")
             {
-                MessageToast.show("Valor inválido!");
+                MessageToast.show("Nombre inválido");
+                return;
             }
 
+            if(iPrecioProducto <= 0 && isFinite(iPrecioProducto))
+            {
+                MessageToast.show("Precio inválido");
+                return;
+            }
+
+            this.getView().setBusy(true);
+
+            ProductService.create({
+                name: sNombreProducto,
+                price: parseFloat(iPrecioProducto)
+            }).then(createdProduct => {
+                MessageToast.show(oResourceBundle.getText("mainView.dialog.createdProductMessage"));
+                this.getView().getModel("products").setProperty("/items/"+this.getView().getModel("products").getProperty("/items").length, createdProduct);
+                this.onCloseDialog();
+            }).catch(err => {
+                MessageToast.show(oResourceBundle.getText("mainView.dialog.errorUpdateServiceMessage") + err.message);
+            }).finally(() => {
+                this.getView().setBusy(false);
+            });
             
         },
 

@@ -53,6 +53,15 @@ function () {
                     body: JSON.stringify(changes)
                 }
             );
+        },
+
+        create: function (changes){
+            return request(BASE_PATH,
+                {
+                    method: "POST",
+                    body: JSON.stringify(changes)
+                }
+            );
         }
     };
 

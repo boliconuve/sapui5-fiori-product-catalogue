@@ -88,5 +88,77 @@
     "name": "Soporte para Laptop",
     "description": "Soporte ajustable para laptop con refrigeración.",
     "price": 39.99
+  },
+  {
+    "description": "",
+    "name": "Producto prueba",
+    "price": 100,
+    "id": "product-2b51349b-fbf9-43cc-9e06-7fd78c3bcac7"
+  },
+  {
+    "description": "",
+    "name": "Producto prueba",
+    "price": 100,
+    "id": "product-74f22c34-c856-4724-a690-d7aa7bc58b63"
+  },
+  {
+    "description": "",
+    "name": "Producto prueba",
+    "price": 100,
+    "id": "product-bd53200c-f240-4551-ba0c-a2ca3a68b096"
+  },
+  {
+    "description": "",
+    "name": "Producto Nuevo",
+    "price": 100,
+    "id": "product-770c0a65-dbda-427d-8b74-a41bc335e87f"
+  },
+  {
+    "description": "",
+    "name": "Producto Nuevo",
+    "price": 100,
+    "id": "product-444d5864-ad4d-45f0-864f-4828197f930c"
+  },
+  {
+    "description": "",
+    "name": "producto nuevo",
+    "price": 100,
+    "id": "product-c2ada823-cc47-4639-8b5f-9883f2b20632"
+  },
+  {
+    "description": "",
+    "name": "Nuevo",
+    "price": 100,
+    "id": "product-c150bd14-d290-442f-9dd9-501e528261fb"
+  },
+  {
+    "description": "",
+    "name": "Nuevo producto",
+    "price": 100,
+    "id": "product-bfe7076f-a186-4595-9fb8-24085f98d5f9"
+  },
+  {
+    "description": "",
+    "name": "Nuevo producto",
+    "price": 100,
+    "id": "product-d3a20356-4586-40ee-b88d-a9c43e55bcb7"
+  },
+  {
+    "description": "",
+    "name": "producto añadido",
+    "price": 20,
+    "id": "product-ec2a8c1a-403a-4287-8147-9a9d5bdc59ed"
+  },
+  {
+    "description": "",
+    "name": "producto añadido 2",
+    "price": 150,
+    "id": "product-37a53d1e-2519-48ef-95dc-9d84f88c2743"
+  },
+  {
+    "description": "",
+    "name": "producto añadido 3",
+    "price": 120,
+    "id": "product-b8b02399-654e-4638-9d71-b1b403c335ea"
   }
 ]
